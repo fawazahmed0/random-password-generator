@@ -30,8 +30,8 @@ function regen(){
     let uint8 = new Uint8Array(1000)
         window.crypto.getRandomValues(uint8)
         let data = String.fromCharCode.apply(null, uint8)
-        document.querySelector('#first').textContent = Array.from(data.match(/[a-z0-9!-\/]/gi)).join('').replaceAll(`'`, '').replaceAll(`"`, '').replaceAll('`', '')
-        document.querySelector('#second').textContent = Array.from(data.match(/[a-z0-9]/gi)).join('').replaceAll(`'`, '').replaceAll(`"`, '').replaceAll('`', '')
+        document.querySelector('#first').textContent = Array.from(data.match(/[!-~/]/gi)).join('').replace(/('|"|\/|\\|`)/gi, "")
+        document.querySelector('#second').textContent = Array.from(data.match(/[a-z0-9]/gi)).join('')
 
 }
 regen()
