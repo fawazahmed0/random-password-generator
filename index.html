@@ -9,6 +9,7 @@
 
 <body>
     <div>
+        <button onclick="regen()">Regenerate</button>
         <p>
             With Special Symbols:
         </p>
@@ -25,12 +26,15 @@
     </div>
     <script>
 
-        let uint8 = new Uint8Array(1000)
+function regen(){
+    let uint8 = new Uint8Array(1000)
         window.crypto.getRandomValues(uint8)
         let data = String.fromCharCode.apply(null, uint8)
         document.querySelector('#first').textContent = Array.from(data.match(/[a-z0-9!-\/]/gi)).join('').replaceAll(`'`, '').replaceAll(`"`, '').replaceAll('`', '')
         document.querySelector('#second').textContent = Array.from(data.match(/[a-z0-9]/gi)).join('').replaceAll(`'`, '').replaceAll(`"`, '').replaceAll('`', '')
 
+}
+regen()
     </script>
 </body>
 
